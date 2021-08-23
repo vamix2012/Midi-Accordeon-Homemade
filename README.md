@@ -6,27 +6,32 @@ First Version of this Homemade Midi accordeon with MIDI over BLE and Bellows pre
 
 I am glad to pressent my work witch took some time to be finished but the result is tremendous.
 
-### Problem?
+### What was the problem? Why this project?
 
 We all know that accordeons are loud instruments
 
 - Most of the time I met following situations
   - My beloved daughters are sleeping
-  - It's 13:00-15:00 or after 22:00 o'clock where is silence time
+  - It's 13:00-15:00 or after 22:00 o'clock
+  - That means "Be silent don't play that Accordeon"
 
 ### Solution
 
-I was thinking about Roland V-Accordeon a great one but.... 3000-6000€
-I can buy a car with that amount of money, defenetly no.
+- Roland V-Accordeon a great one but.... 3000-6000€ Sorry it's a no :)
 
-Ok, then? An Accordeon with midi builtin was an option but still between 1000-2000€
-and you need special cables and special adapters to plug into a synth
-It's somehow a mess, ok, that's obviously another NO.
+  - I can buy a car with that amount of money, defenetly no.
 
-Ok, there must be a solution...
-Make your own Midi Accordeon and fit it to your needs, Hurray that's it.
+- Ok, then? An Accordeon with midi builtin was an option but still between 1000-2000€
 
-So I went making my own one under 200€.
+  - You need special cables and special adapters to plug into a synth
+  - It's somehow a mess, ok, that's obviously another NO.
+
+- Ok, there must be a solution...
+
+  - Make your own Midi Accordeon and fit it to your needs, Hurray that's it.
+
+- So I went building my own one under 200€.
+  - Even the fact that I didn't had Programming skills, took the Challenge and it was a success.
 
 ### Story
 
@@ -65,7 +70,7 @@ Software:
 - FluidSynth with .sf2 soundfonts
   - A great Soundfont is Orpheus GM(https://musical-artifacts.com/artifacts/1213)
   - SGM Soundfont is a Light and Compact(https://musical-artifacts.com/artifacts/855)
-  - Feel free to use any soundfont out there ;)
+  - Feel free to use any Soundfont out there ;)
 
 Hardware:
 
@@ -77,9 +82,10 @@ How this Works:
 
 Connection between the Accordeon and FluidSynth is done with MIDI over BLE function of the ESP32
 
-Why I choose this setup?
+### Why I choose this setup?
 
-As you can see is just an app on the phone, the controller connects to it over BLE and thats it. Simple as that
+As you can see is just an app on the phone, the controller connects to it over BLE and thats it. Simple as that.
+
 This cool guy inspired me.(https://www.youtube.com/playlist?list=PLuxHP0PdeNpYkzfZUs_iHeYi_2xwNMNbF)
 
 ### Credits
