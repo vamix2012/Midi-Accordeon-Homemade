@@ -16,7 +16,7 @@
 // #include <hardware/BLEMIDI_ESP32_NimBLE.h>
 #include <hardware/BLEMIDI_ESP32.h>
 
-BLEMIDI_CREATE_INSTANCE("Cristian's Akkordeon", MIDI)
+BLEMIDI_CREATE_INSTANCE("Cristian's Homemade Midi Akkordeon", MIDI)
 bool isConnected = false;
 
 
@@ -238,29 +238,17 @@ Serial.println("error starting temperature measurement\n");
           //because larger changes in pressure will cause smaller changes in volume.
           int min_velocity = 126;
 
-          //Algorithm used to map pressure deltas into MIDI velocity
-          //Tweaks may need to be made for each accordion based on where the BMP_180 was placed
-          //and how much air flows through the accordion when keys are pressed.
+        
           int get_expression_from_pressure(double Pressure) {
             int expression = 0;
             float Pressure_Delta = abs(Pressure - Calib_Pressure);
-
-            //I derived this formula from a graphing calculator (https://www.desmos.com/)
-            //I started with a cubic function: y=m(x-c)^3+nx+b
-            //I set the constants until the contour fell in line with
-            //the expected pressure range and MIDI velocity output (0<x<250,0<y<127).
-            //From there I tweaked values and play tested them until
-            //I got something that sounded and felt right.
-            //This function may need to be tweaked for different accordions and playing styles.
-            expression = int(0.4*Pressure_Delta+20);
-
-
-            //If the pressure delta is below the defined limit, set it to the minimum velocity.
-            //This works best when the mapping function hits the coordinate where
-            //x = pressure_low_limit and y = min_velocity
+            
+            expression = int(0.00000005*pow(Pressure_Delta-450,3) + 0.112*Pressure_Delta)+50;
+            
             if (Pressure_Delta < pressure_low_limit) {
               expression = min_velocity;
             }
+            
             if (expression > 127) {
               expression = 127;
             }
@@ -315,6 +303,7 @@ int buttonPState[N_BUTTONS] = {0};        // stores the button previous value
           // Baud Rate
           // use if using with ATmega328 (uno, mega, nano...)
           // 31250 for MIDI class compliant | 115200 for Hairless MIDI
+          Wire.setClock(3400000);
           MIDI.begin(MIDI_CHANNEL_OMNI);
 
           pinMode(LED_BUILTIN, OUTPUT);
@@ -358,13 +347,10 @@ int buttonPState[N_BUTTONS] = {0};        // stores the button previous value
 #endif
 }
 
+
           void loop() {
-
-            readPressureFromBMP();
-
-
             buttons();
-
+            readPressureFromBMP();
           }
 
           //////////Constantly read pressure
@@ -373,16 +359,16 @@ int buttonPState[N_BUTTONS] = {0};        // stores the button previous value
 
             //Ignore it if it didn't change
             if (expression != prev_expression) {
-                MIDI.sendControlChange(CC_Expression, expression, 3);
-                //Don't let bass overpower melody
-                MIDI.sendControlChange(CC_Expression, expression, 1);
-                //Don't let chords overpower melody
-                MIDI.sendControlChange(CC_Expression, expression, 2);
-
-                prev_expression = expression;
-              }
+              Serial.println(expression);
+              MIDI.sendControlChange(CC_Expression, expression, 3);
+              //Don't let bass overpower melody
+              MIDI.sendControlChange(CC_Expression, expression, 1);
+              //Don't let chords overpower melody
+              MIDI.sendControlChange(CC_Expression, expression, 2);
+              prev_expression = expression;
             }
-          
+          }
+
 
 
           /////////////////////////////////////////////
