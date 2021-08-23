@@ -9,9 +9,10 @@ I am glad to pressent my work witch took some time to be finished but the result
 ### Problem?
 
 We all know that accordeons are loud instruments
-Most of the time I met following situations
--My beloved daughters are sleeping
--It's 13:00-15:00 or after 22:00 o'clock where is silence time
+
+- Most of the time I met following situations
+  - My beloved daughters are sleeping
+  - It's 13:00-15:00 or after 22:00 o'clock where is silence time
 
 ### Solution
 
