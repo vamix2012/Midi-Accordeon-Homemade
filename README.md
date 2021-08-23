@@ -26,12 +26,17 @@ We all know that accordeons are loud instruments
   - You need special cables and special adapters to plug into a synth
   - It's somehow a mess, ok, that's obviously another NO.
 
-- Ok, there must be a solution...
+- Ok, but there must be a solution...
 
   - Make your own Midi Accordeon and fit it to your needs, Hurray that's it.
 
 - So I went building my own one under 200€.
-  - Even the fact that I didn't had Programming skills, took the Challenge and it was a success.
+  - Even the fact that at the time I started the project had no Programming skills.
+  - But took the Challenge and it was a success.
+  - That was my turning point to Programming.
+  - I learned the Arduino code.
+  - Then decided to go with Frontend development and learn it professionally.
+  - Now after a year of intense work I am job ready in Frontend development.
 
 ### Story
 
@@ -39,16 +44,16 @@ After researching I found just parts of what I needed so I did it my way putting
 
 ### Parts
 
-| Parts used in this project                                         |
-| ------------------------------------------------------------------ |
-| Old accordeon, I recommend one with good compression and good keys |
-| ESP32 DEVKIT V1                                                    |
-| 65 Hall Sensors and small round 4x2mm magnets                      |
-| 5 CD74HC4067 multiplexers                                          |
-| BMP180 pressure sensor                                             |
-| 8000mAh battery                                                    |
-| Micro USB Male to USB2.0 B Type Female Adapter w/ monting screws   |
-| USB 3.1 extender cable w/ mounting screws                          |
+| Parts used in this project                                                         |
+| ---------------------------------------------------------------------------------- |
+| Old accordeon, I recommend one with good compression and good mechanical condition |
+| ESP32 DEVKIT V1                                                                    |
+| 65pcs Hall Sensors and small round 4x2mm magnets                                   |
+| 5pcs CD74HC4067 multiplexers                                                       |
+| BMP180 pressure sensor                                                             |
+| 8000mAh battery                                                                    |
+| Micro USB Male to USB2.0 B Type Female Adapter w/ monting screws                   |
+| USB 3.1 extender cable w/ mounting screws                                          |
 
 ### Arduino Libraries
 
@@ -68,15 +73,15 @@ The following libraries are required to compile the MIDI_Accordion Arduino sketc
 Software:
 
 - FluidSynth with .sf2 soundfonts
-  - A great Soundfont is Orpheus GM(https://musical-artifacts.com/artifacts/1213)
-  - SGM Soundfont is a Light and Compact(https://musical-artifacts.com/artifacts/855)
-  - Feel free to use any Soundfont out there ;)
+  - A great Soundfont is [Orpheus GM](https://musical-artifacts.com/artifacts/1213)
+  - A Light and Compact Soundfont is[SGM Soundfont](https://musical-artifacts.com/artifacts/855)
+  - Feel free to use any Soundfont out [there](https://www.google.com/search?q=soundfonts+sf2&rlz=1C1CHBD_deDE932DE932&sxsrf=ALeKk02X2pNNehXxbOWeKxTRRQ1Wxy9J7w%3A1629754976019&ei=YBYkYcJEnf3v9Q-E4rzwCg&oq=soundfonts+sf2&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEMsBMgUIABDLATIFCAAQywEyBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjoHCAAQRxCwAzoHCAAQsAMQQzoFCAAQgAQ6BAgAEB5KBAhBGABQqTdYgFlgjV1oA3ACeACAAX6IAacGkgEDNi4ymAEAoAEByAEKwAEB&sclient=gws-wiz&ved=0ahUKEwjC9KmzjsjyAhWd_rsIHQQxD64Q4dUDCA4&uact=5) ;)
 
 Hardware:
 
 - Android Phone
 
-As long as I know there is only an Android Version of FluidSynth on (Mobile devices) but you can checkout yourself on their website(https://www.fluidsynth.org/download/)
+As long as I know there is only an Android Version of FluidSynth on (Mobile devices) but you can checkout yourself on their [website](https://www.fluidsynth.org/download/)
 
 How this Works:
 
@@ -86,9 +91,8 @@ Connection between the Accordeon and FluidSynth is done with MIDI over BLE funct
 
 As you can see is just an app on the phone, the controller connects to it over BLE and thats it. Simple as that.
 
-This cool guy inspired me.(https://www.youtube.com/playlist?list=PLuxHP0PdeNpYkzfZUs_iHeYi_2xwNMNbF)
-
 ### Credits
 
-- Gustavo Silveira aka Musico Nerd for the DIY-Midi-controller(https://github.com/silveirago)
-- Brendan Vavra for the pressure sensor documentation and code(https://github.com/bvavra)
+- [Gustavo Silveira](https://github.com/silveirago) Musico Nerd for the DIY-Midi-controller.
+- [Brendan Vavra](https://github.com/bvavra) for the pressure sensor documentation and code.
+- [This guy inspired me to use the ESP32 instead of Arduino.](https://www.youtube.com/playlist?list=PLuxHP0PdeNpYkzfZUs_iHeYi_2xwNMNbF)
