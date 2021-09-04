@@ -1,16 +1,16 @@
 /////////////////////////////////////////////
 // LIBRARIES
 //#include <BLEMIDI_Transport.h>//MIDI over Bluetooth Low Energy
-//#include <hardware/BLEMIDI_ESP32.h>//Hardware Support for ESP32
-#include <MIDI.h>
+//#include <hardware/BLEMIDI_ArduinoBLE.h>
+#include <USB-MIDI.h>
 #include <Multiplexer4067.h> // Multiplexer CD4067 library >> https://github.com/sumotoy/Multiplexer4067
 #include <SFE_BMP180.h>// Pressure Sensor
 #include <Wire.h>//I2C Bus
 
 
 SFE_BMP180 bmp_180;
+USBMIDI_CREATE_DEFAULT_INSTANCE();
 
-MIDI_CREATE_DEFAULT_INSTANCE();
 //BLEMIDI_CREATE_INSTANCE("Chris's Midi Akkordeon", MIDI)
 bool isConnected = false;
 bool isExpression = true;
@@ -19,15 +19,15 @@ bool isExpression = true;
 // MULTIPLEXERS
 #define N_MUX 5 //* number of multiplexers
 //* Define s0, s1, s2, s3, and x pins
-#define s0 13
-#define s1 12
-#define s2 14
-#define s3 27
-#define xa1 35
-#define xa2 34
-#define xa3 32
-#define xa4 33
-#define xa5 25// analog pin of the first mux
+#define s0 2
+#define s1 3
+#define s2 4
+#define s3 5
+#define xa1 A0
+#define xa2 A1
+#define xa3 A2
+#define xa4 A3
+#define xa5 A6// analog pin of the first mux
 
 // Initializes the multiplexer
 Multiplexer4067 mux[N_MUX] = {
@@ -225,7 +225,7 @@ Serial.println("error starting temperature measurement\n");
 
         };
 
-        int buttonMuxThreshold = 2000;
+        int buttonMuxThreshold = 600;
         int buttonCState[N_BUTTONS] = {0};        // stores the button current value
         int buttonPState[N_BUTTONS] = {0};        // stores the button previous value
 
@@ -249,26 +249,10 @@ Serial.println("error starting temperature measurement\n");
         ///////////////////////////////////////////////
 
         void setup() {
-          MIDI.begin();
-          Serial.begin(256000);
-          Wire.setClock(1000000);
+        
+          Serial.begin(115200);
           
-
-          pinMode(LED_BUILTIN, OUTPUT);
-          digitalWrite(LED_BUILTIN, HIGH);
-          delay(1000);
-          digitalWrite(LED_BUILTIN, LOW);
-/**
-          BLEMIDI.setHandleConnected([]() {
-            isConnected = true;
-            digitalWrite(LED_BUILTIN, HIGH);
-          });
-
-          BLEMIDI.setHandleDisconnected([]() {
-            isConnected = false;
-            digitalWrite(LED_BUILTIN, LOW);
-          });
-          **/
+          MIDI.begin(MIDI_CHANNEL_OMNI);
 
           // Buttons
           // Initialize buttons with pull up resistors
@@ -324,6 +308,7 @@ Serial.println("error starting temperature measurement\n");
           for (int j = 0; j < N_MUX; j++) {
             for (int i = 0; i < N_BUTTONS_PER_MUX[j]; i++) {
               buttonCState[i + nButtonsPerMuxSum] = mux[j].readChannel(BUTTON_MUX_PIN[j][i]);
+              
               // Scale values to 0-1
               if (buttonCState[i + nButtonsPerMuxSum] > buttonMuxThreshold) {
                 buttonCState[i + nButtonsPerMuxSum] = HIGH;
