@@ -5,7 +5,8 @@ First MIDI Accordion to use Internal Sounds and amplified Speakers with addition
 ## Overview
 
 I am glad to present my work, which took some time to be finished, but the result is tremendous.
-Frist Demo Video(https://www.youtube.com/watch?v=eXtjxC-6mcA) more coming soon...
+
+Frist [Demo Video](https://www.youtube.com/watch?v=eXtjxC-6mcA) more coming soon...
 
 ### What was the problem? Why this project?
 
